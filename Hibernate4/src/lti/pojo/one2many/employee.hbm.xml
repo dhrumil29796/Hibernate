@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+          "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+          
+          <hibernate-mapping package="lti.pojo.one2many">
+          <class name="Department" table="depts">
+          <id name="deptno">
+          
+          <generator class="assigned"></generator>
+          
+          </id>
+          <set name="employees" cascade="save-update,delete" inverse="true">
+          <key column="deptno" on-delete="cascade"></key>
+          <one-to-many class="Employee"/>
+          </set>
+          <property name="name" type="string"></property>
+          <property name="location" type="string"></property>
+          
+          </class>
+          
+          
+          <class name="Employee" table="emps">
+          <id name="empno">
+          <generator class="assigned"></generator>
+          </id>
+          <many-to-one name="dept" column="deptno" not-null="true"></many-to-one>
+          <property name="name"></property>
+          <property name="salary"></property>
+          </class>
+          </hibernate-mapping>
