@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping>
+	<class name="lti.pojo.Book" table="books">
+		<id name="id">
+			<generator class="increment"/>
+		</id>
+		
+		<natural-id>
+			<property name="isbn" not-null="true"/>
+		</natural-id>
+		
+		<property name="title" length="30"/>
+		<property name="author" length="50"/>
+		<property name="price" />
+	</class>
+</hibernate-mapping>

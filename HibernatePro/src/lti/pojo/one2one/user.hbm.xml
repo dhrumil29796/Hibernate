@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="lti.pojo.one2one">
+
+	<class name="User" table="user_details_1">
+		<id name="id" column="user_id">
+			<generator class="native" />
+		</id>
+		<one-to-one name="address" cascade="save-update,delete" />
+		<property name="firstname" />
+		<property name="lastname" />
+		<property name="username" />
+		<property name="password" />
+	</class>
+
+	<class name="Address" table="users_address_1">
+		<id name="id" column="id">
+			<generator class="foreign">
+				<param name="property">user</param>
+			</generator>
+		</id>
+		<one-to-one name="user" class="User" constrained="true" />
+		<property name="city" />
+		<property name="street" />
+		<property name="zipcode" />
+	</class>
+</hibernate-mapping>

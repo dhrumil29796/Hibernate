@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+          "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="lti.pojo">
+
+	<class name="BillingDetails" table="billing_details_1">
+		<id name="id" column="billing_id" type="int">
+			<generator class="increment" />
+		</id>
+
+		<discriminator column="billing_type" type="string" />
+
+		<property name="owner" />
+		<property name="number" column="no" />
+
+		<subclass name="BankAccount" discriminator-value="BA">
+			<property name="bankName" column="bank_name" />
+		</subclass>
+
+		<subclass name="CreditCard" discriminator-value="CC">
+			<property name="type" column="card_type" />
+			<property name="expiryMonth" column="expiry_month" />
+			<property name="expiryYear" column="expiry_year" />
+		</subclass>
+
+	</class>
+
+</hibernate-mapping>
